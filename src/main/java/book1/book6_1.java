@@ -3,15 +3,63 @@ package book1;
 import org.junit.Test;
 
 /**
- * 遍历二叉树-先序
+ * 遍历二叉树
  */
 public class book6_1 {
 
-
+    /**
+     * 先序
+     */
     @Test
     public void test0() {
         Node tree = init();
-        System.out.println(tree);
+        preOrderRecursion(tree);
+    }
+
+    /**
+     * 中序遍历
+     */
+    @Test
+    public void test1() {
+        Node tree = init();
+        preOrderRecursion1(tree);
+    }
+
+    /**
+     * 后续遍历
+     */
+    @Test
+    public void test2() {
+        Node tree = init();
+        preOrderRecursion2(tree);
+    }
+
+
+    public void preOrderRecursion(Node node) {
+        if (node == null) {
+            return;
+        }
+        preOrderRecursion(node.left);
+        System.out.println("value:" + node.value);
+        preOrderRecursion(node.right);
+    }
+
+    public void preOrderRecursion1(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println("value:" + node.value);
+        preOrderRecursion(node.left);
+        preOrderRecursion(node.right);
+    }
+
+    public void preOrderRecursion2(Node node) {
+        if (node == null) {
+            return;
+        }
+        preOrderRecursion(node.right);
+        System.out.println("value:" + node.value);
+        preOrderRecursion(node.left);
     }
 
 
@@ -52,7 +100,7 @@ public class book6_1 {
 
         @Override
         public String toString() {
-            return "Node["+value+"-left:"+left.value+"-right"+right.value+"]";
+            return "Node[" + value + "-left:" + left.value + "-right" + right.value + "]";
         }
     }
 }

@@ -7,3 +7,5 @@
 .idea/workspace.xml
 LsLearn.iml
 target/
+.idea/checkstyle-idea.xml
+.idea/modules.xml
