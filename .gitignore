@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/LsLearn.iml
+.idea/compiler.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/workspace.xml
+LsLearn.iml
+target/
