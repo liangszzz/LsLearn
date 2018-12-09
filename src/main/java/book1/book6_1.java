@@ -11,7 +11,15 @@ public class book6_1 {
     @Test
     public void test0() {
         Node tree = init();
-        System.out.println(tree);
+        showTree(tree);
+    }
+
+    public void showTree(Node node) {
+        if (node.left != null)
+            showTree(node.left);
+        System.out.println(node.value);
+        if (node.right != null)
+            showTree(node.right);
     }
 
 
@@ -52,7 +60,7 @@ public class book6_1 {
 
         @Override
         public String toString() {
-            return "Node["+value+"-left:"+left.value+"-right"+right.value+"]";
+            return "Node[" + value + "-left:" + left.value + "-right" + right.value + "]";
         }
     }
 }
