@@ -3,23 +3,63 @@ package book1;
 import org.junit.Test;
 
 /**
- * 遍历二叉树-先序
+ * 遍历二叉树
  */
 public class book6_1 {
 
-
+    /**
+     * 先序
+     */
     @Test
     public void test0() {
         Node tree = init();
-        showTree(tree);
+        preOrderRecursion(tree);
     }
 
-    public void showTree(Node node) {
-        if (node.left != null)
-            showTree(node.left);
-        System.out.println(node.value);
-        if (node.right != null)
-            showTree(node.right);
+    /**
+     * 中序遍历
+     */
+    @Test
+    public void test1() {
+        Node tree = init();
+        preOrderRecursion1(tree);
+    }
+
+    /**
+     * 后续遍历
+     */
+    @Test
+    public void test2() {
+        Node tree = init();
+        preOrderRecursion2(tree);
+    }
+
+
+    public void preOrderRecursion(Node node) {
+        if (node == null) {
+            return;
+        }
+        preOrderRecursion(node.left);
+        System.out.println("value:" + node.value);
+        preOrderRecursion(node.right);
+    }
+
+    public void preOrderRecursion1(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println("value:" + node.value);
+        preOrderRecursion(node.left);
+        preOrderRecursion(node.right);
+    }
+
+    public void preOrderRecursion2(Node node) {
+        if (node == null) {
+            return;
+        }
+        preOrderRecursion(node.right);
+        System.out.println("value:" + node.value);
+        preOrderRecursion(node.left);
     }
 
 
