@@ -7,11 +7,14 @@ import org.junit.Test;
  */
 public class book7_1 {
 
-    private Node tree = new Node(-1);
-
     @Test
     public void test0() {
-
+        Node tree = new Node(3);
+        insertNode(tree, tree, 1);
+        insertNode(tree, tree, 2);
+        insertNode(tree, tree, 3);
+        insertNode(tree, tree, 4);
+        System.out.println(tree);
     }
 
     public Node searchNode(Node node, int value) {
@@ -42,9 +45,30 @@ public class book7_1 {
         return node;
     }
 
-    public boolean insertNode(Node node) {
-
-        return true;
+    public Node insertNode(Node parent, Node node, int value) {
+        if (parent == null) {
+            parent = new Node(value);
+            return parent;
+        }
+        if (node == null) {
+            Node node1 = new Node(value);
+            if (value > parent.value) {
+                parent.right = node1;
+            } else if (value < parent.value) {
+                parent.left = node1;
+            } else {
+                return parent;
+            }
+        } else {
+            if (node.value > value) {
+                return insertNode(node, node.left, value);
+            } else if (node.value < value) {
+                return insertNode(node, node.right, value);
+            } else {
+                return node;
+            }
+        }
+        return null;
     }
 
     public boolean deleteNode(Node node) {
