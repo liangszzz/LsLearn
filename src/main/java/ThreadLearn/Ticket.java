@@ -47,6 +47,18 @@ public class Ticket {
         thread.join();
     }
 
+    @Test
+    public void test4() throws InterruptedException {
+        Station4 station = new Station4();
+        Thread thread = new Thread(station);
+        Thread thread1 = new Thread(station);
+        Thread thread2 = new Thread(station);
+        thread.start();
+        thread1.start();
+        thread2.start();
+        thread.join();
+    }
+
     static class Station1 implements Runnable {
 
         private int count = 30;
@@ -141,6 +153,31 @@ public class Ticket {
                     e.printStackTrace();
                 }
 
+            }
+        }
+    }
+
+    static class Station4 implements Runnable {
+
+        private volatile int count = 30;
+
+        Random random = new Random();
+
+        @Override
+        public void run() {
+            while (count > 0) {
+                if (count > 0) {
+                    System.out.println("第{" + count + "}张票");
+                    count--;
+                } else {
+                    System.out.println("票已买完");
+                    break;
+                }
+            }
+            try {
+                Thread.sleep(random.nextInt(500));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
