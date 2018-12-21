@@ -14,9 +14,10 @@ public class Node {
 
     @Override
     public String toString() {
-        StringBuffer buffer=new StringBuffer();
-        buffer.append("\t").append(value).append("\n")
-                .append(left).append("\t").append("\t").append("\t").append(right).append("\n");
-        return buffer.toString();
+        return "Node{" +
+                "value=" + value +
+                ", left=" + left +
+                ", right=" + right +
+                '}';
     }
 }
