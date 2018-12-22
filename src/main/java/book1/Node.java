@@ -1,5 +1,12 @@
 package book1;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Node {
 
     int value;
@@ -10,14 +17,5 @@ public class Node {
         this.value = value;
         left = null;
         right = null;
-    }
-
-    @Override
-    public String toString() {
-        return "Node{" +
-                "value=" + value +
-                ", left=" + left +
-                ", right=" + right +
-                '}';
     }
 }

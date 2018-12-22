@@ -18,14 +18,12 @@ public class book7_1 {
         insertNode(15);
         insertNode(6);
         insertNode(18);
-        insertNode(3);
-        insertNode(7);
+        insertNode(4);
+        insertNode(9);
+        insertNode(13);
         insertNode(17);
         insertNode(20);
-        insertNode(2);
-        insertNode(4);
-        insertNode(13);
-        insertNode(9);
+        delNode(15);
     }
 
     public Node searchNode(Node node, int value) {
@@ -99,12 +97,77 @@ public class book7_1 {
             return;
         }
 
+        Node willDel = null;
+        Node currentParent = tree;
+        boolean left_right = true;
+        Node current = tree;
+        while (current != null) {
+            if (current.value == value) {
+                willDel = current;
+                break;
+            }
 
+            currentParent = current;
+
+            if (current.value > value) {
+                current = current.left;
+                left_right = true;
+            } else {
+                current = current.right;
+                left_right = false;
+            }
+        }
+        if (willDel == null) {
+            System.out.println("#not find this value");
+            return;
+        }
+
+        //1.如果待删除的节点 是 叶子节点
+        if (willDel.left == null && willDel.right == null) {
+            if (left_right) {
+                currentParent.left = null;
+            } else {
+                currentParent.right = null;
+            }
+        }
+        //2.如果只有左子树 或 只有右子树
+        else if (willDel.left != null && willDel.right == null) {
+            if (left_right) {
+                currentParent.left = willDel.left;
+            } else {
+                currentParent.right = willDel.left;
+            }
+        } else if (willDel.left == null && willDel.right != null) {
+            if (left_right) {
+                currentParent.left = willDel.right;
+            } else {
+                currentParent.right = willDel.right;
+            }
+        }
+        //3.如果左右子树都存在
+        else {
+            //获取前驱节点
+            Node preNode = getPreNode(willDel.left);
+            delNode(preNode.value);
+            willDel.value = preNode.value;
+        }
+
+        System.out.println("\n");
+        System.out.println(tree);
     }
 
-    public boolean deleteNode(Node node) {
-        return true;
-    }
+    public Node getPreNode(Node node) {
 
+        Node current = node;
+
+        while (current != null) {
+            if (current.right == null) {
+                return current;
+            } else {
+                current = current.right;
+            }
+        }
+        return null;
+    }
 
 }
