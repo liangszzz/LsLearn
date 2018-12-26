@@ -12,7 +12,7 @@ public class book6_1 {
      */
     @Test
     public void test0() {
-        Node tree = init();
+        TreeNode tree = init();
         preOrderRecursion(tree);
     }
 
@@ -21,7 +21,7 @@ public class book6_1 {
      */
     @Test
     public void test1() {
-        Node tree = init();
+        TreeNode tree = init();
         preOrderRecursion1(tree);
     }
 
@@ -30,56 +30,56 @@ public class book6_1 {
      */
     @Test
     public void test2() {
-        Node tree = init();
+        TreeNode tree = init();
         preOrderRecursion2(tree);
     }
 
 
-    public void preOrderRecursion(Node node) {
-        if (node == null) {
+    public void preOrderRecursion(TreeNode TreeNode) {
+        if (TreeNode == null) {
             return;
         }
-        preOrderRecursion(node.left);
-        System.out.println("value:" + node.value);
-        preOrderRecursion(node.right);
+        preOrderRecursion(TreeNode.left);
+        System.out.println("value:" + TreeNode.value);
+        preOrderRecursion(TreeNode.right);
     }
 
-    public void preOrderRecursion1(Node node) {
-        if (node == null) {
+    public void preOrderRecursion1(TreeNode TreeNode) {
+        if (TreeNode == null) {
             return;
         }
-        System.out.println("value:" + node.value);
-        preOrderRecursion(node.left);
-        preOrderRecursion(node.right);
+        System.out.println("value:" + TreeNode.value);
+        preOrderRecursion(TreeNode.left);
+        preOrderRecursion(TreeNode.right);
     }
 
-    public void preOrderRecursion2(Node node) {
-        if (node == null) {
+    public void preOrderRecursion2(TreeNode TreeNode) {
+        if (TreeNode == null) {
             return;
         }
-        preOrderRecursion(node.right);
-        System.out.println("value:" + node.value);
-        preOrderRecursion(node.left);
+        preOrderRecursion(TreeNode.right);
+        System.out.println("value:" + TreeNode.value);
+        preOrderRecursion(TreeNode.left);
     }
 
 
-    public Node init() {
-        Node tree = new Node(0);
-        Node left1 = new Node(1);
-        Node right1 = new Node(2);
+    public TreeNode init() {
+        TreeNode tree = new TreeNode(0);
+        TreeNode left1 = new TreeNode(1);
+        TreeNode right1 = new TreeNode(2);
         tree.left = left1;
         tree.right = right1;
-        Node left2 = new Node(3);
-        Node right2 = new Node(4);
+        TreeNode left2 = new TreeNode(3);
+        TreeNode right2 = new TreeNode(4);
         left1.left = left2;
         left1.right = right2;
-        Node left3 = new Node(5);
-        Node right3 = new Node(6);
+        TreeNode left3 = new TreeNode(5);
+        TreeNode right3 = new TreeNode(6);
         right1.left = left3;
         right1.right = right3;
 
-        Node left4 = new Node(7);
-        Node right4 = new Node(8);
+        TreeNode left4 = new TreeNode(7);
+        TreeNode right4 = new TreeNode(8);
         left2.left = left4;
         left2.right = right4;
 

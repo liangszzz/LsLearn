@@ -11,59 +11,59 @@ import org.junit.Test;
  */
 public class book7_1 {
 
-    Node tree;
+    TreeNode tree;
 
     @Test
     public void test0() {
-        insertNode(15);
-        insertNode(6);
-        insertNode(18);
-        insertNode(4);
-        insertNode(9);
-        insertNode(13);
-        insertNode(17);
-        insertNode(20);
-        delNode(15);
+        insertTreeNode(15);
+        insertTreeNode(6);
+        insertTreeNode(18);
+        insertTreeNode(4);
+        insertTreeNode(9);
+        insertTreeNode(13);
+        insertTreeNode(17);
+        insertTreeNode(20);
+        delTreeNode(15);
     }
 
-    public Node searchNode(Node node, int value) {
-        if (node == null) {
+    public TreeNode searchTreeNode(TreeNode TreeNode, int value) {
+        if (TreeNode == null) {
             return null;
         }
-        if (node.value == value) {
-            return node;
+        if (TreeNode.value == value) {
+            return TreeNode;
         }
-        if (node.value >= value) {
-            return searchNode(node.right, value);
+        if (TreeNode.value >= value) {
+            return searchTreeNode(TreeNode.right, value);
         } else {
-            return searchNode(node.left, value);
+            return searchTreeNode(TreeNode.left, value);
         }
     }
 
-    public Node getMinNode(Node node) {
-        if (node.left != null) {
-            return getMinNode(node);
+    public TreeNode getMinTreeNode(TreeNode TreeNode) {
+        if (TreeNode.left != null) {
+            return getMinTreeNode(TreeNode);
         }
-        return node;
+        return TreeNode;
     }
 
-    public Node getMaxNode(Node node) {
-        if (node.right != null) {
-            return getMaxNode(node);
+    public TreeNode getMaxTreeNode(TreeNode TreeNode) {
+        if (TreeNode.right != null) {
+            return getMaxTreeNode(TreeNode);
         }
-        return node;
+        return TreeNode;
     }
 
     /**
      * 插入
      */
-    public void insertNode(int value) {
+    public void insertTreeNode(int value) {
         if (tree == null) {
-            tree = new Node(value);
+            tree = new TreeNode(value);
             return;
         }
-        Node willInsert = null;
-        Node current = tree;
+        TreeNode willInsert = null;
+        TreeNode current = tree;
         while (current != null) {
             willInsert = current;
             if (current.value > value) {
@@ -77,9 +77,9 @@ public class book7_1 {
         }
 
         if (willInsert.value > value) {
-            willInsert.left = new Node(value);
+            willInsert.left = new TreeNode(value);
         } else if (willInsert.value < value) {
-            willInsert.right = new Node(value);
+            willInsert.right = new TreeNode(value);
         } else {
             System.out.println("#无需插入2");
             return;
@@ -91,16 +91,16 @@ public class book7_1 {
     /**
      * 删除
      */
-    public void delNode(int value) {
+    public void delTreeNode(int value) {
         if (tree == null) {
             System.out.println("#tree is null");
             return;
         }
 
-        Node willDel = null;
-        Node currentParent = tree;
+        TreeNode willDel = null;
+        TreeNode currentParent = tree;
         boolean left_right = true;
-        Node current = tree;
+        TreeNode current = tree;
         while (current != null) {
             if (current.value == value) {
                 willDel = current;
@@ -147,18 +147,18 @@ public class book7_1 {
         //3.如果左右子树都存在
         else {
             //获取前驱节点
-            Node preNode = getPreNode(willDel.left);
-            delNode(preNode.value);
-            willDel.value = preNode.value;
+            TreeNode preTreeNode = getPreTreeNode(willDel.left);
+            delTreeNode(preTreeNode.value);
+            willDel.value = preTreeNode.value;
         }
 
         System.out.println("\n");
         System.out.println(tree);
     }
 
-    public Node getPreNode(Node node) {
+    public TreeNode getPreTreeNode(TreeNode TreeNode) {
 
-        Node current = node;
+        TreeNode current = TreeNode;
 
         while (current != null) {
             if (current.right == null) {
