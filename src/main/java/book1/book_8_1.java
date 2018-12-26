@@ -104,17 +104,6 @@ public class book_8_1 {
             route(check);
             check = checkBalance(tree);
         }
-
-
-    }
-
-    /**
-     * 删除节点
-     *
-     * @param val
-     */
-    public void delTreeNode(int val) {
-
     }
 
     /**
