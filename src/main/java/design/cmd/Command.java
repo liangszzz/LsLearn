@@ -1,4 +1,6 @@
 package design.cmd;
 
-public class Command {
+public interface Command {
+
+    void execute();
 }
