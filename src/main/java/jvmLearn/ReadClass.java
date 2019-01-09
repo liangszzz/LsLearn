@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ReadClass {
 
@@ -48,6 +49,8 @@ public class ReadClass {
             return;
         }
         showClassVersion(bytes);
+
+
     }
 
     public void LoadClazz(String filepath, List<Byte> byteList) throws IOException {
@@ -82,19 +85,32 @@ public class ReadClass {
         return false;
     }
 
+    int[] jdks = new int[]{
+            51
+    };
+
     /**
      * 检查文件支持的JDK版本
      *
      * @param bytes 4
      */
     public void showClassVersion(List<Byte> bytes) {
+
         if (bytes == null || bytes.size() <= 8) {
             System.out.println("#");
         }
-        String minor_version = Integer.toHexString(Byte.toUnsignedInt(bytes.get(4))) + "" + Integer.toHexString(Byte.toUnsignedInt(bytes.get(5)));
-        System.out.println("minor_version" + minor_version);
-        String major_version = Integer.toHexString(Byte.toUnsignedInt(bytes.get(6))) + "" + Integer.toHexString(Byte.toUnsignedInt(bytes.get(7)));
-        System.out.println("major_version" + major_version);
+        String minor_version = bytes.get(4) + "" + bytes.get(5);
+        System.out.println("minor_version:" + minor_version);
+        String major_version = bytes.get(6) + "" + bytes.get(7);
+        System.out.println("major_version:" + major_version);
+    }
+
+    /**
+     * 处理常量池
+     *
+     * @param bytes
+     */
+    public void constant_pool(List<Byte> bytes, Map<String, String> map) {
 
     }
 }
