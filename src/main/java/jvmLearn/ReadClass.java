@@ -1,5 +1,6 @@
 package jvmLearn;
 
+import jvmLearn.ConstantPool.PoolLoadMain;
 import org.junit.Test;
 
 import java.io.File;
@@ -119,17 +120,15 @@ public class ReadClass {
         really_count -= 1;
         System.out.println(really_count);
 
+        PoolLoadMain poolLoadMain = new PoolLoadMain();
+
         //字面常量和符号常量
         for (int i = 10, count = 0; count <= really_count + 10; count++) {
-            byte aByte1 = bytes.get(i);
-            byte aByte2 = bytes.get(++i);
-            byte aByte3 = bytes.get(++i);
-            byte aByte4 = bytes.get(++i);
-            byte aByte5 = bytes.get(++i);
-            i++;
-            System.out.println(aByte1 + "#" + aByte2 + "#" + aByte3 + "#" + aByte4 + "#" + aByte5);
+            int offect = poolLoadMain.execute(bytes, i);
+            i = i + offect + 1;
         }
     }
+
 
     /**
      * 获取U2 数 转换成 int
