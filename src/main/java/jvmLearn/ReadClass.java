@@ -11,11 +11,11 @@ import java.util.Map;
 
 public class ReadClass {
 
-    @Test
     public void read() throws IOException {
 
+        String clazzpath = "D:\\github\\LsLearn\\target\\classes\\jvmLearn\\ClassType.class";
         try (
-                FileInputStream inputStream = new FileInputStream(new File("D:\\github\\LsLearn\\target\\classes\\book1\\book4_3_1.class"))) {
+                FileInputStream inputStream = new FileInputStream(new File(clazzpath))) {
             byte[] bytes = new byte[16];
             while (true) {
                 int len = inputStream.read(bytes);
@@ -36,7 +36,7 @@ public class ReadClass {
 
     @Test
     public void readClass() throws IOException {
-        String clazzpath = "D:\\github\\LsLearn\\target\\classes\\book1\\book4_3_1.class";
+        String clazzpath = "D:\\github\\LsLearn\\target\\classes\\jvmLearn\\ClassType.class";
         List<Byte> bytes = new ArrayList<>(1024);
         LoadClazz(clazzpath, bytes);
         if (bytes.size() < 4) {
@@ -49,7 +49,7 @@ public class ReadClass {
             return;
         }
         showClassVersion(bytes);
-
+        loadConstantPool(bytes, null);
 
     }
 
@@ -110,7 +110,40 @@ public class ReadClass {
      *
      * @param bytes
      */
-    public void constant_pool(List<Byte> bytes, Map<String, String> map) {
+    public void loadConstantPool(List<Byte> bytes, Map<String, String> map) {
+        //获取常量池里的常量数量
+        byte a = bytes.get(8);
+        byte b = bytes.get(9);
+        int really_count = getU2(a, b);
+        //常量池的索引是从1开始的
+        really_count -= 1;
+        System.out.println(really_count);
 
+        //字面常量和符号常量
+        for (int i = 10, count = 0; count <= really_count + 10; count++) {
+            byte aByte1 = bytes.get(i);
+            byte aByte2 = bytes.get(++i);
+            byte aByte3 = bytes.get(++i);
+            byte aByte4 = bytes.get(++i);
+            byte aByte5 = bytes.get(++i);
+            i++;
+            System.out.println(aByte1 + "#" + aByte2 + "#" + aByte3 + "#" + aByte4 + "#" + aByte5);
+        }
+    }
+
+    /**
+     * 获取U2 数 转换成 int
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public int getU2(byte a, byte b) {
+        int really = a;
+        if (a > 0) {
+            String str = Integer.toHexString(a) + "00";
+            really = Integer.valueOf(str, 16);
+        }
+        return really + b;
     }
 }
