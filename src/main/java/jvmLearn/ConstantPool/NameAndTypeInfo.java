@@ -37,7 +37,7 @@ public class NameAndTypeInfo extends AbstructPoolLoad {
      */
     @Override
     public byte[] getLength(List<Byte> list, int start) {
-        byte[] bs = new byte[4];
+        byte[] bs = new byte[2];
         bs[0] = list.get(start + 1);
         bs[1] = list.get(start + 2);
         return bs;
@@ -50,7 +50,7 @@ public class NameAndTypeInfo extends AbstructPoolLoad {
      */
     @Override
     public byte[] getBytes(List<Byte> list, int start) {
-        byte[] bs = new byte[4];
+        byte[] bs = new byte[2];
         bs[0] = list.get(start + 3);
         bs[1] = list.get(start + 4);
         return bs;

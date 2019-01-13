@@ -1,10 +1,13 @@
 package jvmLearn.ConstantPool;
 
+import jvmLearn.Clazz.ConstantPool;
+
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public interface PoolLoad {
 
-    int execute(List<Byte> list, int start);
+    void execute(List<Byte> bytes, AtomicInteger index, List<ConstantPool> constantPools);
 
     /**
      * 支持的常量
@@ -43,5 +46,5 @@ public interface PoolLoad {
      */
     PoolLoad setNext(PoolLoad poolLoad);
 
-    int executeNext(List<Byte> list, int start);
+    void executeNext(List<Byte> bytes, AtomicInteger index, List<ConstantPool> constantPools);
 }

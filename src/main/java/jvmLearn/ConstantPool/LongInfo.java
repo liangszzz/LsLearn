@@ -47,11 +47,10 @@ public class LongInfo extends AbstructPoolLoad {
      */
     @Override
     public byte[] getBytes(List<Byte> list, int start) {
-        byte[] bs = new byte[4];
-        bs[0] = list.get(start + 1);
-        bs[1] = list.get(start + 2);
-        bs[2] = list.get(start + 3);
-        bs[3] = list.get(start + 4);
+        byte[] bs = new byte[8];
+        for (int i = 0; i < 8; i++) {
+            bs[i] = list.get(start + 1 + i);
+        }
         return bs;
     }
 }

@@ -15,7 +15,7 @@ public class Utf8Info extends AbstructPoolLoad {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3+length;
     }
 
 
@@ -50,8 +50,10 @@ public class Utf8Info extends AbstructPoolLoad {
      */
     @Override
     public byte[] getBytes(List<Byte> list, int start) {
-        byte[] bs = new byte[1];
-        bs[0] = list.get(start + 3);
+        byte[] bs = new byte[length];
+        for (int i = 0; i < length; i++) {
+            bs[i] = list.get(i + start);
+        }
         return bs;
     }
 }

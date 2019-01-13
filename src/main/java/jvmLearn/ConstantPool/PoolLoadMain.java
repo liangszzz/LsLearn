@@ -1,6 +1,9 @@
 package jvmLearn.ConstantPool;
 
+import jvmLearn.Clazz.ConstantPool;
+
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PoolLoadMain {
 
@@ -29,19 +32,17 @@ public class PoolLoadMain {
             InvokeDynamicInfo invokeDynamicInfo = new InvokeDynamicInfo();
 
             poolLoad.setNext(integerInfo).setNext(floatInfo).setNext(longInfo)
-                    .setNext(floatInfo).setNext(doubleInfo).setNext(classInfo)
-                    .setNext(stringInfo).setNext(fieldrefInfo).setNext(methodrefInfo)
+                    .setNext(doubleInfo).setNext(classInfo).setNext(stringInfo)
+                    .setNext(fieldrefInfo).setNext(methodrefInfo)
                     .setNext(interfaceMethodrefInfo).setNext(nameAndTypeInfo)
-                    .setNext(methodHandleInfo).setNext(methodTypeInfo).setNext(invokeDynamicInfo);
+                    .setNext(methodHandleInfo).setNext(methodTypeInfo)
+                    .setNext(invokeDynamicInfo);
 
         }
     }
 
 
-    public int execute(List<Byte> list, int start) {
-        int execute = poolLoad.execute(list, start);
-        return execute;
+    public void execute(List<Byte> bytes, AtomicInteger integer, List<ConstantPool> list) {
+        poolLoad.execute(bytes, integer, list);
     }
-
-
 }
