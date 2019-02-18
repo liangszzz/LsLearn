@@ -20,14 +20,15 @@ public class ExcelRead {
 
     public static void main(String[] args) throws IOException {
 
-        Workbook workBook = getWorkBook(new File("C:\\Users\\admin\\Desktop\\纳米还款（人人聚财）.xlsx"));
-
-        Iterator<Sheet> sheetIterator = workBook.sheetIterator();
-        while (sheetIterator.hasNext()) {
-            Sheet next = sheetIterator.next();
-            System.out.println("#" + next.getSheetName() + "#");
-            getSheetInfo(next);
-        }
+        Workbook workBook = getWorkBook(new File("C:\\Users\\admin\\Desktop\\2019-01纳米还款(人人聚财).xlsx"));
+//        Iterator<Sheet> sheetIterator = workBook.sheetIterator();
+//        while (sheetIterator.hasNext()) {
+//            Sheet next = sheetIterator.next();
+//            System.out.println("#" + next.getSheetName() + "#");
+//            getSheetInfo(next);
+//        }
+        Sheet next = workBook.getSheetAt(5);
+        getSheetInfo(next,getRRCJMap());
     }
 
     public static Workbook getWorkBook(File file) throws IOException {
@@ -51,10 +52,7 @@ public class ExcelRead {
     static int sqlCount = 0;
     static int noSqlCount = 0;
 
-    public static void getSheetInfo(Sheet sheet) {
-        System.out.println("###正在处理###" + sheet.getSheetName());
-        int firstRowNum = sheet.getFirstRowNum();
-        int lastRowNum = sheet.getLastRowNum();
+    public static Map<Integer, String> getRRCJMap() {
         HashMap<Integer, String> map = new HashMap<>();
         map.put(2, "biz_order_no");
         map.put(5, "loan_date");
@@ -62,6 +60,13 @@ public class ExcelRead {
         map.put(10, "actual_pay_date");
         map.put(12, "actual_pay_money");
         map.put(15, "pay_status");
+        return map;
+    }
+
+    public static void getSheetInfo(Sheet sheet, Map<Integer, String> map) {
+        System.out.println("###正在处理###" + sheet.getSheetName());
+        int firstRowNum = sheet.getFirstRowNum();
+        int lastRowNum = sheet.getLastRowNum();
 
         Handle biz = new BizOrderCodeHandle();
         Handle loan = new LoanDateHandle();
@@ -83,7 +88,7 @@ public class ExcelRead {
                     Cell cell = row.getCell(j);
                     biz.execute(cell, map.get(j), sqlMap);
                 }
-                createSQL(sqlMap);
+                createSQLForRRJC(sqlMap);
             }
         }
         System.out.println("###本次创建SQL###" + sqlCount);
@@ -91,10 +96,11 @@ public class ExcelRead {
     }
 
     /**
-     * 创建账单更新语句
+     * 创建RRCJ账单更新语句
+     *
      * @param map
      */
-    public static void createSQL(HashMap<String, String> map) {
+    public static void createSQLForRRJC(HashMap<String, String> map) {
         StringBuffer sqlBuffer = new StringBuffer();
         if ("3".equals(map.get("pay_status"))) {
             sqlBuffer.append("update cl_bill_copy set ")
@@ -123,12 +129,26 @@ public class ExcelRead {
     }
 
     /**
-     * 如果账单的应还期数和总期数一致
-     * 创建更新订单状态语句
+     * 创建JDY账单更新语句
+     *
      * @param map
      */
-    public void createSQL2(HashMap<String, String> map) {
-        //没有
-    }
+    public static void createSQLForJYD(HashMap<String, String> map) {
+        StringBuilder builder = new StringBuilder();
 
+//        builder.append("update cl_bill_copy set ")
+//                .append("pi_repay_date=").append("'").append(map.get("actual_pay_date")).append("'");
+//        builder.append(" where ").append("'").append(map.get("biz_order_no")).append("'").append(" and")
+//                .append(" current_repayment_term=").append("'").append(map.get("current_repayment_term")).append("'").append(" and")
+//                .append(" bill_type=1").append(";");
+
+        builder.append("SELECT count(1) FROM cl_bill_copy ")
+                .append("WHERE biz_order_no=").append("'").append(map.get("biz_order_no")).append("' ")
+                .append("AND bill_type = 1 ")
+                .append("and current_repayment_term=").append("'").append(map.get("current_repayment_term")).append("' ")
+                .append("AND DATE_FORMAT(pi_repay_date,'%Y-%m-%d') =").append("'").append(map.get("actual_pay_date")).append("' ")
+                .append("AND DATE_FORMAT(actual_pay_date,'%Y-%m-%d')=").append("'").append(map.get("actual_pay_date")).append("' ;");
+        System.out.println(builder.toString());
+        sqlCount++;
+    }
 }
