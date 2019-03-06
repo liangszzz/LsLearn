@@ -1,4 +1,4 @@
-package lintcode;
+package code;
 
 import org.junit.Test;
 
