@@ -20,14 +20,14 @@ public class ExcelRead {
 
     public static void main(String[] args) throws IOException {
 
-        Workbook workBook = getWorkBook(new File("C:\\Users\\admin\\Desktop\\2019-01纳米还款(人人聚财).xlsx"));
+        Workbook workBook = getWorkBook(new File("C:\\Users\\admin\\Desktop\\纳米还款(RRJC).xlsx"));
 //        Iterator<Sheet> sheetIterator = workBook.sheetIterator();
 //        while (sheetIterator.hasNext()) {
 //            Sheet next = sheetIterator.next();
 //            System.out.println("#" + next.getSheetName() + "#");
 //            getSheetInfo(next);
 //        }
-        Sheet next = workBook.getSheetAt(5);
+        Sheet next = workBook.getSheetAt(6);
         getSheetInfo(next,getRRCJMap());
     }
 

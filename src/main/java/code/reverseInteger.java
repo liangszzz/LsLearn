@@ -1,8 +1,6 @@
-package lintcode;
+package code;
 
 import org.junit.Test;
-
-import java.util.Arrays;
 
 /**
  * 反转一个只有3位数的整数。

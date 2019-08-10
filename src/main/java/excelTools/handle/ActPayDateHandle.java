@@ -13,6 +13,7 @@ public class ActPayDateHandle extends AbstructHandle {
     public void execute(Cell cell, String val, HashMap<String, String> sqlMap) {
         if (checkExecute(val)) {
             Date dateCellValue = cell.getDateCellValue();
+            if (dateCellValue == null) return;
             String date = sdf.format(dateCellValue);
             sqlMap.put(getVal(), date);
         }
