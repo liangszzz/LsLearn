@@ -1,12 +1,10 @@
-package rabbitmq.base;
+package rabbitmq.work;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.*;
 
 public class Producer {
-
     public static void main(String[] args) {
+
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("local.server");
         factory.setPort(5672);
@@ -15,8 +13,12 @@ public class Producer {
 
         try (Connection connection = factory.newConnection()) {
             Channel channel = connection.createChannel();
-            channel.queueDeclare("hello", false, false, false, null);
-            channel.basicPublish("", "hello", null, "msg2".getBytes());
+            String queueName = "test-work";
+            String exchangeName = "test-exchange";
+            channel.queueDeclare(queueName, false, false, false, null);
+            for (int i = 0; i < 10; i++) {
+                channel.basicPublish("", queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, ("some message" + i).getBytes());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
