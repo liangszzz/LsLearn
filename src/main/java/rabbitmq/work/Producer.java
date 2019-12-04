@@ -14,8 +14,7 @@ public class Producer {
         try (Connection connection = factory.newConnection()) {
             Channel channel = connection.createChannel();
             String queueName = "test-work";
-            String exchangeName = "test-exchange";
-            channel.queueDeclare(queueName, false, false, false, null);
+            channel.queueDeclare(queueName, true, false, false, null);
             for (int i = 0; i < 10; i++) {
                 channel.basicPublish("", queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, ("some message" + i).getBytes());
             }

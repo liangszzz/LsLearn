@@ -18,9 +18,9 @@ public class Consumer {
 
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-
         String queueName = "test-work";
-        channel.queueDeclare(queueName, false, false, false, null);
+        channel.queueDeclare(queueName, true, false, false, null);
+        channel.basicQos(1);
 
         DeliverCallback deliverCallback = (consumerTag, message) -> {
             String msg = new String(message.getBody(), StandardCharsets.UTF_8);
@@ -29,10 +29,12 @@ public class Consumer {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } finally {
+                channel.basicAck(message.getEnvelope().getDeliveryTag(), false);
             }
         };
 
-        channel.basicConsume(queueName,true, deliverCallback, consumerTag -> {
+        channel.basicConsume(queueName, false, deliverCallback, consumerTag -> {
         });
 
     }
