@@ -2,7 +2,9 @@ package rabbitmq.fanout;
 
 import com.rabbitmq.client.*;
 
-public class Consumer {
+import java.nio.charset.StandardCharsets;
+
+public class FanoutConsumer {
     public static void main(String[] args) {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("local.server");
@@ -18,10 +20,10 @@ public class Consumer {
             channel.exchangeDeclare(exchangeName, BuiltinExchangeType.FANOUT);
 
             String queueName = channel.queueDeclare().getQueue();
-            channel.queueBind(queueName, exchangeName, "TAG.#");
+            channel.queueBind(queueName, exchangeName, "");
 
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-                String message = new String(delivery.getBody(), "UTF-8");
+                String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
                 System.out.println(" [x] Received '" + message + "'");
             };
             channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {
