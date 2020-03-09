@@ -6,7 +6,7 @@ public class Application {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ReentrantLock lock = new ReentrantLock(true);
+        MyLock lock = new MyLock();
 
         final Stock s = new Stock(1000);
 
@@ -14,10 +14,10 @@ public class Application {
             Thread thread = new Thread(new Runnable() {
                 public void run() {
                     while (s.getSize() > 0) {
-                        synchronized (s) {
-                            if (s.getSize() > 0)
-                                s.decrease();
-                        }
+                        lock.lock();
+                        if (s.getSize() > 0)
+                            s.decrease();
+                        lock.unlock();
                     }
                 }
             });

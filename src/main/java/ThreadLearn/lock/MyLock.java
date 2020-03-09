@@ -3,8 +3,8 @@ package ThreadLearn.lock;
 
 import sun.misc.Unsafe;
 
-import java.io.File;
 import java.lang.reflect.Field;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -19,9 +19,13 @@ public class MyLock implements Lock {
 
     private static Unsafe unsafe;
 
-    private volatile int state;
+    private int state;
 
-    private static long stateOffset;
+    private static long offset;
+
+    private Set<Thread> set = new HashSet<>();
+
+    private Thread current;
 
     static {
 
@@ -34,15 +38,21 @@ public class MyLock implements Lock {
         }
 
         try {
-            stateOffset = unsafe.objectFieldOffset(MyLock.class.getDeclaredField("state"));
+            offset = unsafe.objectFieldOffset(MyLock.class.getDeclaredField("state"));
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
     }
 
     public void lock() {
-
-
+//        System.out.println("lock    " + Thread.currentThread().getName());
+        while (!tryLock()) {
+            set.add(Thread.currentThread());
+            LockSupport.park();
+//            System.out.println("lock  park  " + Thread.currentThread().getName() + "");
+        }
+        current = Thread.currentThread();
+//        System.out.println("lock  success  " + Thread.currentThread().getName() + "");
     }
 
     public void lockInterruptibly() throws InterruptedException {
@@ -50,7 +60,8 @@ public class MyLock implements Lock {
     }
 
     public boolean tryLock() {
-        return false;
+//        System.out.println("tryLock     " + Thread.currentThread().getName());
+        return unsafe.compareAndSwapInt(this, offset, 0, 1);
     }
 
     public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
@@ -58,7 +69,15 @@ public class MyLock implements Lock {
     }
 
     public void unlock() {
-
+        if (current.equals(Thread.currentThread())) {
+            setState(0);
+            Optional<Thread> first = set.stream().findFirst();
+            if (first.isPresent()) {
+                set.remove(first.get());
+                LockSupport.unpark(first.get());
+            }
+        }
+//        System.out.println("unlock     " + Thread.currentThread().getName());
     }
 
     public Condition newCondition() {
