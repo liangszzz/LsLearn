@@ -5,6 +5,7 @@ import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -19,11 +20,11 @@ public class MyLock implements Lock {
 
     private static Unsafe unsafe;
 
-    private int state;
+    private volatile int state;
 
     private static long offset;
 
-    private Set<Thread> set = new HashSet<>();
+    private ConcurrentLinkedQueue<Thread> set = new ConcurrentLinkedQueue<>();
 
     private Thread current;
 
@@ -71,10 +72,8 @@ public class MyLock implements Lock {
     public void unlock() {
         if (current.equals(Thread.currentThread())) {
             setState(0);
-            Optional<Thread> first = set.stream().findFirst();
-            if (first.isPresent()) {
-                set.remove(first.get());
-                LockSupport.unpark(first.get());
+            if (!set.isEmpty()) {
+                LockSupport.unpark(set.poll());
             }
         }
 //        System.out.println("unlock     " + Thread.currentThread().getName());
