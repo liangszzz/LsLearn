@@ -1,4 +1,4 @@
-package ThreadLearn.product;
+package threads.product;
 
 import java.util.ArrayList;
 import java.util.List;

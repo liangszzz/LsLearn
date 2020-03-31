@@ -1,4 +1,4 @@
-package ThreadLearn.product;
+package threads.product;
 
 import lombok.SneakyThrows;
 

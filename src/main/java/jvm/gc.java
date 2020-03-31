@@ -1,4 +1,4 @@
-package jvmLearn;
+package jvm;
 
 
 import java.lang.ref.SoftReference;

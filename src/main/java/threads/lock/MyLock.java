@@ -1,10 +1,9 @@
-package ThreadLearn.lock;
+package threads.lock;
 
 
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
-import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;

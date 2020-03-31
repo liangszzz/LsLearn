@@ -1,4 +1,4 @@
-package jvmLearn;
+package jvm;
 
 import lombok.Data;
 

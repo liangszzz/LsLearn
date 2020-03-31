@@ -2,10 +2,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class BigDecimalTest {
 
@@ -57,6 +54,9 @@ public class BigDecimalTest {
             }
         });
         poolExecutor.shutdown();
+
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        ExecutorService executorService2 = Executors.newCachedThreadPool();
     }
 
 

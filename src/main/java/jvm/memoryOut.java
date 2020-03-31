@@ -1,4 +1,4 @@
-package jvmLearn;
+package jvm;
 
 public class memoryOut {
 

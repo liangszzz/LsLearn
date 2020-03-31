@@ -1,4 +1,4 @@
-package jvmLearn;
+package jvm;
 
 /**
  * Exception in thread "main" java.lang.StackOverflowError

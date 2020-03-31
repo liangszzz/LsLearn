@@ -1,4 +1,4 @@
-package ThreadLearn.lock;
+package threads.lock;
 
 import sun.misc.Unsafe;
 

@@ -1,11 +1,7 @@
-package ThreadLearn;
-
-import org.junit.Test;
+package threads;
 
 import java.util.Random;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 银行取钱问题

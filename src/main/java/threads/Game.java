@@ -1,9 +1,8 @@
-package ThreadLearn;
+package threads;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Random;
-import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**

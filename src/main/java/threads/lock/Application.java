@@ -1,6 +1,4 @@
-package ThreadLearn.lock;
-
-import java.util.concurrent.locks.ReentrantLock;
+package threads.lock;
 
 public class Application {
 

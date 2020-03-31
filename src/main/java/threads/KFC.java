@@ -1,4 +1,4 @@
-package ThreadLearn;
+package threads;
 
 import java.util.Queue;
 import java.util.Random;

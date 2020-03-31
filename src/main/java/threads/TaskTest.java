@@ -1,6 +1,5 @@
-package ThreadLearn;
+package threads;
 
-import java.util.ArrayList;
 import java.util.concurrent.*;
 
 /**

@@ -1,4 +1,4 @@
-package ThreadLearn;
+package threads;
 
 public class Car {
 

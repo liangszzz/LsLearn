@@ -1,4 +1,4 @@
-package ThreadLearn;
+package threads;
 
 /**
  * 写一个线程池

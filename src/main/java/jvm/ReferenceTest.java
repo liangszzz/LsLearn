@@ -1,4 +1,4 @@
-package jvmLearn;
+package jvm;
 
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
