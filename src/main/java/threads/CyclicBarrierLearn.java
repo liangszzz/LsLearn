@@ -8,7 +8,7 @@ import java.util.concurrent.CyclicBarrier;
 /**
  * 对战游戏学习CyclicBarrier
  */
-public class Game {
+public class CyclicBarrierLearn {
 
     public static void main(String[] args) throws IOException {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> {

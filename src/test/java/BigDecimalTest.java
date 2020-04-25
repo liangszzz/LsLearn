@@ -69,6 +69,10 @@ public class BigDecimalTest {
         System.out.println(s);
         String s1 = Integer.toBinaryString(-4);
         System.out.println(s1);
+
+        TreeMap map = new TreeMap<>();
+        map.put("A", 1);
+
     }
 
 }

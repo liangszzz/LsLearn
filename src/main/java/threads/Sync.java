@@ -6,7 +6,7 @@ public class Sync {
 
     public static void main(String[] args) {
 
-        Car car = new Car();
+        Object car = new Object();
         System.out.println(car.hashCode());
 
         System.out.println(ClassLayout.parseInstance(car).toPrintable());
