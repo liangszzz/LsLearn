@@ -75,4 +75,9 @@ public class BigDecimalTest {
 
     }
 
+    @Test
+    public void t6() {
+        System.out.println(null == null);
+    }
+
 }
