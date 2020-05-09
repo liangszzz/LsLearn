@@ -1,3 +1,5 @@
+package util.test;
+
 import org.junit.Test;
 
 import java.math.BigDecimal;
