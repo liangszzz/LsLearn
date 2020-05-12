@@ -31,7 +31,7 @@ public class BufferPool {
         return INSTANCE;
     }
 
-    private ReentrantLock lock = new ReentrantLock();
+    private final ReentrantLock lock = new ReentrantLock();
 
     private BufferPool(int size, boolean isDirect) {
         this.max = size;
@@ -84,19 +84,22 @@ public class BufferPool {
     }
 
     public void release(VirtualBuffer buffer) {
-        bitSet.clear(buffer.getStart(), buffer.getEnd());
+        lock.lock();
+        try {
+            bitSet.clear(buffer.getStart(), buffer.getEnd());
+        } finally {
+            lock.unlock();
+        }
     }
 
 
     public static void main(String[] args) throws IOException {
         BufferPool pool = BufferPool.getInstance(2048, true);
 
-        Read read = new Read(pool, 64);
-        Read read1 = new Read(pool, 128);
-        Read read2 = new Read(pool, 32);
+        Read read2 = new Read(pool, 120);
 
-        new Thread(read).start();
-        new Thread(read1).start();
+        new Thread(read2).start();
+        new Thread(read2).start();
         new Thread(read2).start();
         new Thread(read2).start();
         new Thread(read2).start();
@@ -134,7 +137,8 @@ public class BufferPool {
                 ByteBuffer buffer = virtualBuffer.getBuffer();
                 while (true) {
                     try {
-                        if (!(channel.read(buffer) != -1)) break;
+                        assert channel != null;
+                        if (channel.read(buffer) == -1) break;
                     } catch (IOException e) {
                         e.printStackTrace();
                         System.exit(0);
@@ -146,12 +150,6 @@ public class BufferPool {
                     }
                     buffer.clear();
                     System.out.println(Thread.currentThread().getId() + ":" + builder);
-                }
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    System.exit(0);
                 }
                 pool.release(virtualBuffer);
             }
