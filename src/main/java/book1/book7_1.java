@@ -1,6 +1,5 @@
 package book1;
 
-import org.junit.Test;
 
 /**
  * 二叉搜索树
@@ -13,7 +12,6 @@ public class book7_1 {
 
     TreeNode tree;
 
-    @Test
     public void test0() {
         insertTreeNode(15);
         insertTreeNode(6);

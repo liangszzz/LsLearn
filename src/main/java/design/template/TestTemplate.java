@@ -1,10 +1,8 @@
 package design.template;
 
-import org.junit.Test;
 
 public class TestTemplate {
 
-    @Test
     public void test0() {
 
         Car cara = new CarA();
@@ -14,7 +12,6 @@ public class TestTemplate {
         carb.run();
     }
 
-    @Test
     public void test1() {
 
         Car cara = new CarA();

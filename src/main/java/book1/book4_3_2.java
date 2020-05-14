@@ -1,6 +1,5 @@
 package book1;
 
-import org.junit.Test;
 
 import java.util.Stack;
 
@@ -33,7 +32,6 @@ public class book4_3_2 {
     }
 
 
-    @Test
     public void test0() {
         System.out.println(bracketMatch("{XX}{oo[vv]}ccc"));
     }

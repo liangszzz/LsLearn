@@ -1,7 +1,7 @@
 package leetcode;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -40,7 +40,7 @@ public class code1 {
         Solution solution = new Solution();
         int[] nums = {3, 3};
         int[] ints = solution.twoSum(nums, 6);
-        Assert.assertArrayEquals(ints, new int[]{0, 1});
+        Assertions.assertArrayEquals(ints, new int[]{0, 1});
     }
 
     @Test
@@ -48,7 +48,7 @@ public class code1 {
         Solution solution = new Solution();
         int[] nums = {3, 2, 4};
         int[] ints = solution.twoSum(nums, 6);
-        Assert.assertArrayEquals(ints, new int[]{1,2});
+        Assertions.assertArrayEquals(ints, new int[]{1,2});
     }
 
     @Test
@@ -56,7 +56,7 @@ public class code1 {
         Solution solution = new Solution();
         int[] nums = {2, 7, 11, 15};
         int[] ints = solution.twoSum(nums, 9);
-        Assert.assertArrayEquals(ints, new int[]{0, 1});
+        Assertions.assertArrayEquals(ints, new int[]{0, 1});
     }
 
     @Test
@@ -64,7 +64,7 @@ public class code1 {
         Solution solution = new Solution();
         int[] nums = {3, 2, 4};
         int[] ints = solution.twoSum(nums, 6);
-        Assert.assertArrayEquals(ints, new int[]{1, 2});
+        Assertions.assertArrayEquals(ints, new int[]{1, 2});
     }
 
     class Solution {

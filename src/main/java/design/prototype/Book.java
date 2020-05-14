@@ -1,7 +1,6 @@
 package design.prototype;
 
 import lombok.Data;
-import org.junit.Test;
 
 @Data
 public class Book implements Cloneable {
@@ -20,7 +19,6 @@ public class Book implements Cloneable {
         }
     }
 
-    @Test
     public void test0() {
         Book book1 = new Book();
         book1.setA("111");

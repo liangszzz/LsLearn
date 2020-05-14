@@ -1,6 +1,5 @@
 package book1;
 
-import org.junit.Test;
 
 import java.util.Stack;
 
@@ -12,7 +11,6 @@ public class book_8_1 {
     /**
      * 左左
      */
-    @Test
     public void test0() {
         insertTreeNode(16);
         insertTreeNode(18);
@@ -26,7 +24,6 @@ public class book_8_1 {
     /**
      * 右右
      */
-    @Test
     public void test1() {
         insertTreeNode(16);
         insertTreeNode(18);
@@ -40,7 +37,6 @@ public class book_8_1 {
     /**
      * 左右
      */
-    @Test
     public void test2() {
         insertTreeNode(16);
         insertTreeNode(18);
@@ -54,7 +50,6 @@ public class book_8_1 {
     /**
      * 右左
      */
-    @Test
     public void test3() {
         insertTreeNode(16);
         insertTreeNode(10);

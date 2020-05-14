@@ -1,6 +1,5 @@
 package book1;
 
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -114,7 +113,6 @@ public class book4_3_3 {
         return retCell;
     }
 
-    @Test
     public void test0() {
         //填满迷宫
         for (int i = 0; i <= 7; i++) {

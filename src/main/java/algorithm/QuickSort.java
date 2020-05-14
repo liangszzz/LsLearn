@@ -1,6 +1,5 @@
 package algorithm;
 
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
  */
 public class QuickSort {
 
-    @Test
     public void test0() {
         List<Integer> list = getList();
         for (int i : list) {

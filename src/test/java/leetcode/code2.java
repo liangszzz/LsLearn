@@ -2,8 +2,8 @@ package leetcode;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class code2 {
         ListNode listNode1 = buildNode(new int[]{2, 4, 3});
         ListNode listNode4 = buildNode(new int[]{5, 6, 4});
         ListNode listNode = solution.addTwoNumbers(listNode1, listNode4);
-        Assert.assertEquals(listNode, buildNode(new int[]{7, 0, 8}));
+        Assertions.assertEquals(listNode, buildNode(new int[]{7, 0, 8}));
     }
 
 
@@ -45,7 +45,7 @@ public class code2 {
         ListNode listNode1 = buildNode(new int[]{1, 8});
         ListNode listNode4 = buildNode(new int[]{0});
         ListNode listNode = solution.addTwoNumbers(listNode1, listNode4);
-        Assert.assertEquals(listNode, buildNode(new int[]{1, 8}));
+        Assertions.assertEquals(listNode, buildNode(new int[]{1, 8}));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class code2 {
         ListNode listNode1 = buildNode(new int[]{1, 2});
         ListNode listNode4 = buildNode(new int[]{2});
         ListNode listNode = solution.addTwoNumbers(listNode1, listNode4);
-        Assert.assertEquals(listNode, buildNode(new int[]{3, 2}));
+        Assertions.assertEquals(listNode, buildNode(new int[]{3, 2}));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class code2 {
         ListNode listNode1 = buildNode(new int[]{1});
         ListNode listNode4 = buildNode(new int[]{9, 9});
         ListNode listNode = solution.addTwoNumbers(listNode1, listNode4);
-        Assert.assertEquals(listNode, buildNode(new int[]{0, 0, 1}));
+        Assertions.assertEquals(listNode, buildNode(new int[]{0, 0, 1}));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class code2 {
         ListNode listNode1 = buildNode(new int[]{8, 9, 9});
         ListNode listNode4 = buildNode(new int[]{2});
         ListNode listNode = solution.addTwoNumbers(listNode1, listNode4);
-        Assert.assertEquals(listNode, buildNode(new int[]{0, 0, 0, 1}));
+        Assertions.assertEquals(listNode, buildNode(new int[]{0, 0, 0, 1}));
     }
 
 

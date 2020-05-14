@@ -1,7 +1,7 @@
 package leetcode;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
@@ -28,13 +28,13 @@ public class code5 {
     @Test
     public void test0() {
         String babad = solution.longestPalindrome("babad");
-        Assert.assertEquals("bab", babad);
+        Assertions.assertEquals("bab", babad);
     }
 
     @Test
     public void test1() {
         String babad = solution.longestPalindrome("cbbd");
-        Assert.assertEquals("bb", babad);
+        Assertions.assertEquals("bb", babad);
     }
 
     static class Solution {

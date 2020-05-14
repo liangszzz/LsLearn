@@ -1,6 +1,5 @@
 package book1;
 
-import org.junit.Test;
 
 import java.util.Stack;
 
@@ -14,7 +13,6 @@ public class book5_3 {
     Stack<Integer> stack2=new Stack<>();
     Stack<Integer> stack3=new Stack<>();
 
-    @Test
     public void test0(){
         init();
         System.out.println(stack1.toString());

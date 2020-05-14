@@ -1,8 +1,8 @@
 package leetcode;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,42 +33,37 @@ import java.util.Set;
  */
 public class code3 {
 
-    private Solution solution;
-
-    @Before
-    public void init() {
-        solution = new Solution();
-    }
+    private Solution solution= new Solution();;
 
 
     @Test
     public void test0() {
         int val = solution.lengthOfLongestSubstring("abcabcbb");
-        Assert.assertEquals(3, val);
+        Assertions.assertEquals(3, val);
     }
 
     @Test
     public void test1() {
         int val = solution.lengthOfLongestSubstring("bbbbb");
-        Assert.assertEquals(1, val);
+        Assertions.assertEquals(1, val);
     }
 
     @Test
     public void test2() {
         int val = solution.lengthOfLongestSubstring("pwwkew");
-        Assert.assertEquals(3, val);
+        Assertions.assertEquals(3, val);
     }
 
     @Test
     public void test3() {
         int val = solution.lengthOfLongestSubstring("dvdf");
-        Assert.assertEquals(3, val);
+        Assertions.assertEquals(3, val);
     }
 
     @Test
     public void test4() {
         int val = solution.lengthOfLongestSubstring("asjrgapa");
-        Assert.assertEquals(6, val);
+        Assertions.assertEquals(6, val);
     }
 
     static class Solution {

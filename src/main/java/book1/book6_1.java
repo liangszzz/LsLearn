@@ -1,6 +1,5 @@
 package book1;
 
-import org.junit.Test;
 
 /**
  * 遍历二叉树
@@ -10,7 +9,6 @@ public class book6_1 {
     /**
      * 先序
      */
-    @Test
     public void test0() {
         TreeNode tree = init();
         preOrderRecursion(tree);
@@ -19,7 +17,6 @@ public class book6_1 {
     /**
      * 中序遍历
      */
-    @Test
     public void test1() {
         TreeNode tree = init();
         preOrderRecursion1(tree);
@@ -28,7 +25,6 @@ public class book6_1 {
     /**
      * 后续遍历
      */
-    @Test
     public void test2() {
         TreeNode tree = init();
         preOrderRecursion2(tree);

@@ -1,7 +1,8 @@
 package leetcode;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class code4 {
     public void test0() {
 
         double medianSortedArrays = solution.findMedianSortedArrays(new int[]{1, 3}, new int[]{2});
-        Assert.assertEquals(medianSortedArrays, 2.0, 0.5);
+        Assertions.assertEquals(medianSortedArrays, 2.0, 0.5);
 
     }
 
@@ -48,7 +49,7 @@ public class code4 {
     public void test1() {
 
         double medianSortedArrays = solution.findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4});
-        Assert.assertEquals(medianSortedArrays, 2.5, 0.5);
+        Assertions.assertEquals(medianSortedArrays, 2.5, 0.5);
 
     }
 

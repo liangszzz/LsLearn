@@ -1,6 +1,5 @@
 package book1;
 
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,6 @@ public class book4_3_1 {
     }
 
 
-    @Test
     public void test0(){
         convert(2007,8);
     }

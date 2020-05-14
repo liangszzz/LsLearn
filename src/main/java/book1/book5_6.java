@@ -1,13 +1,11 @@
 package book1;
 
-import org.junit.Test;
 
 import java.util.Arrays;
 
 public class book5_6 {
 
 
-    @Test
     public void test0() {
         int[] array=new int[]{1,2,3,4,5,6,7,10,9,9,3,2,3};
         System.out.println(getMax(array));

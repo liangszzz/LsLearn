@@ -1,8 +1,6 @@
 package pool2;
 
 import lombok.ToString;
-import netscape.security.UserTarget;
-import sun.nio.ch.DirectBuffer;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -72,7 +70,7 @@ public class BufferPool {
         for (BufferPage page : pages) {
             ByteBuffer buffer = page.getBuffer();
             if (buffer.isDirect()) {
-                ((DirectBuffer) buffer).cleaner().clean();
+
             }
         }
     }
