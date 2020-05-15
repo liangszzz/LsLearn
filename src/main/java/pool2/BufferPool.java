@@ -1,10 +1,12 @@
 package pool2;
 
+import io.netty.buffer.UnpooledDirectByteBuf;
 import lombok.ToString;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Random;
@@ -70,7 +72,7 @@ public class BufferPool {
         for (BufferPage page : pages) {
             ByteBuffer buffer = page.getBuffer();
             if (buffer.isDirect()) {
-
+                buffer = null;
             }
         }
     }
@@ -129,7 +131,7 @@ public class BufferPool {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    
+
                     if (virtualBuffer != null)
                         virtualBuffer.release();
                 }

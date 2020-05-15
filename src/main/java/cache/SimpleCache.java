@@ -1,13 +1,17 @@
 package cache;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SimpleCache implements Cache<String, String> {
+public class SimpleCache implements Cache<String, SimpleCacheEntry<String>> {
 
     private final int max;
 
-    Map<String, String> map;
+    private final ConcurrentHashMap<String, SimpleCacheEntry<String>> map;
 
 
     public SimpleCache(int max) {
@@ -16,23 +20,23 @@ public class SimpleCache implements Cache<String, String> {
     }
 
     @Override
-    public boolean put(String key, String value) {
+    public boolean put(String key, SimpleCacheEntry<String> value) {
         return checkSize() && map.put(key, value) != null;
     }
 
     @Override
-    public String get(String key) {
+    public SimpleCacheEntry<String> get(String key) {
         return null;
     }
 
     @Override
-    public int remove(String key) {
-        return 0;
+    public SimpleCacheEntry<String> remove(String key) {
+        return map.remove(key);
     }
 
     @Override
     public void clear() {
-
+        this.map.clear();
     }
 
     @Override
@@ -43,4 +47,16 @@ public class SimpleCache implements Cache<String, String> {
     private boolean checkSize() {
         return this.map.size() < this.max;
     }
+
+}
+
+@Getter
+@Setter
+@AllArgsConstructor
+class SimpleCacheEntry<V> {
+
+    private V value;
+
+    private long validate;
+
 }

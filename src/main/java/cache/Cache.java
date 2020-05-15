@@ -8,7 +8,7 @@ public interface Cache<K, V> {
 
     V get(K key);
 
-    int remove(K key);
+    V remove(K key);
 
     void clear();
 
