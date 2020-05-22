@@ -7,11 +7,11 @@ import lombok.Setter;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SimpleCache implements Cache<String, SimpleCacheEntry<String>> {
+public class SimpleCache implements Cache<String, Object> {
 
     private final int max;
 
-    private final ConcurrentHashMap<String, SimpleCacheEntry<String>> map;
+    private final ConcurrentHashMap<String, SimpleCacheEntry<Object>> map;
 
 
     public SimpleCache(int max) {
@@ -20,8 +20,15 @@ public class SimpleCache implements Cache<String, SimpleCacheEntry<String>> {
     }
 
     @Override
-    public boolean put(String key, SimpleCacheEntry<String> value) {
-        return checkSize() && map.put(key, value) != null;
+    public boolean put(String key, Object value, long validate) {
+        if (!checkSize()) return false;
+        doPut(key, value, validate);
+        return true;
+    }
+
+    private void doPut(String key, Object value, long validate) {
+        SimpleCacheEntry<Object> simpleCacheEntry = new SimpleCacheEntry<>(value, validate);
+        map.put(key, simpleCacheEntry);
     }
 
     @Override
@@ -30,8 +37,12 @@ public class SimpleCache implements Cache<String, SimpleCacheEntry<String>> {
     }
 
     @Override
-    public SimpleCacheEntry<String> remove(String key) {
-        return map.remove(key);
+    public Object remove(String key) {
+        SimpleCacheEntry<Object> remove = map.remove(key);
+        if (remove.getValidate() > System.currentTimeMillis()) {
+            return remove.getValue();
+        }
+        return null;
     }
 
     @Override
@@ -48,15 +59,14 @@ public class SimpleCache implements Cache<String, SimpleCacheEntry<String>> {
         return this.map.size() < this.max;
     }
 
-}
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    static class SimpleCacheEntry<V> {
 
-@Getter
-@Setter
-@AllArgsConstructor
-class SimpleCacheEntry<V> {
+        private V value;
 
-    private V value;
+        private long validate;
 
-    private long validate;
-
+    }
 }

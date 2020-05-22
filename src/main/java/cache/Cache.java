@@ -4,7 +4,7 @@ package cache;
 public interface Cache<K, V> {
 
 
-    boolean put(K key, V value);
+    boolean put(K key, V value,long validate);
 
     V get(K key);
 
