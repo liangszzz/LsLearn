@@ -21,7 +21,6 @@
     </build>
     <properties>
         <poi.version>4.0.1</poi.version>
-
     </properties>
 
     <dependencies>
@@ -104,6 +103,13 @@
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
             <version>1.22</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.55</version>
         </dependency>
 
 

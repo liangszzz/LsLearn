@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SimpleCache implements Cache<String, Object> {
@@ -12,7 +11,6 @@ public class SimpleCache implements Cache<String, Object> {
     private final int max;
 
     private final ConcurrentHashMap<String, SimpleCacheEntry<Object>> map;
-
 
     public SimpleCache(int max) {
         this.max = max;
@@ -52,7 +50,8 @@ public class SimpleCache implements Cache<String, Object> {
 
     @Override
     public void invalidate(String key) {
-
+        SimpleCacheEntry<Object> objectSimpleCacheEntry = map.get(key);
+        objectSimpleCacheEntry.setValidate(System.currentTimeMillis() - 1);
     }
 
     private boolean checkSize() {
