@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Timeout;
 public class code5 {
 
 
-    private Solution solution = new Solution();
+    private final Solution solution = new Solution();
 
     @Test
     public void test0() {
