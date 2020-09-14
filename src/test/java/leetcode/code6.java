@@ -3,6 +3,8 @@ package leetcode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 /**
  * 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。
  * <p>
@@ -40,6 +42,12 @@ public class code6 {
     private final code6.Solution solution = new code6.Solution();
 
     @Test
+    public void test() {
+        String test = solution.convert("A", 1);
+        Assertions.assertEquals("A", test);
+    }
+
+    @Test
     public void test0() {
         String test = solution.convert("LEETCODEISHIRING", 3);
         Assertions.assertEquals("LCIRETOESIIGEDHN", test);
@@ -51,10 +59,47 @@ public class code6 {
         Assertions.assertEquals("LDREOEIIECIHNTSG", test);
     }
 
+    @Test
+    public void test2() {
+        String test = solution.convert("AB", 1);
+        Assertions.assertEquals("AB", test);
+    }
+
     static class Solution {
         public String convert(String s, int numRows) {
+            if (numRows == 1) {
+                return s;
+            }
+            String[][] strs = new String[s.length()][numRows];
+            int index = 0;
+            int last_x = 0;
+            int last_y = 0;
+            for (int i = 0; i < strs.length; i++) {
+                for (int j = 0; j < numRows; j++) {
+                    if (index >= s.length()) {
+                        break;
+                    }
+                    if (i % (numRows - 1) == 0) {
+                        strs[i][j] = s.substring(index, index + 1);
+                        last_x = i;
+                        last_y = j;
+                        index++;
+                    } else {
+                        strs[++last_x][--last_y] = s.substring(index, index + 1);
+                        i = last_x;
+                        j = last_y;
+                        index++;
+                    }
+                }
+            }
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < numRows; i++) {
+                for (String[] str : strs) {
+                    builder.append(str[i] != null ? str[i] : "");
+                }
+            }
 
-            return null;
+            return builder.toString();
         }
     }
 }
