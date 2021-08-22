@@ -3,8 +3,6 @@ package leetcode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 /**
  * 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。
  * <p>
@@ -37,9 +35,9 @@ import java.util.Arrays;
  * 链接：https://leetcode-cn.com/problems/zigzag-conversion
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class code6 {
+public class Code6 {
 
-    private final code6.Solution solution = new code6.Solution();
+    private final Code6.Solution solution = new Code6.Solution();
 
     @Test
     public void test() {

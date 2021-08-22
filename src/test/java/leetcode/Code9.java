@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
  * 链接：https://leetcode-cn.com/problems/palindrome-number
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class code9 {
+public class Code9 {
 
     Solution solution = new Solution();
 
