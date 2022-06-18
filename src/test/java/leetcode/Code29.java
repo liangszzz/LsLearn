@@ -33,9 +33,42 @@ public class Code29 {
         Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6}, num1);
     }
 
-    int m = 0;
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if (m == 0 && n == 0) {
+            return;
+        }
+        if (m == 0) {
+            System.arraycopy(nums2, 0, nums1, 0, n);
+            return;
+        }
+        int len = nums1.length;
+        int[] arr = new int[len];
+        for (int i = 0, j = 0, k = 0; i < len; i++) {
+            int num1 = Integer.MAX_VALUE;
+            if (j < m) {
+                num1 = nums1[j];
+            }
+            int num2 = Integer.MAX_VALUE;
+            if (k < n) {
+                num2 = nums2[k];
+            }
+            if (num1 <= num2) {
+                arr[i] = num1;
+                j++;
+            } else {
+                arr[i] = num2;
+                k++;
+            }
+        }
+        System.arraycopy(arr, 0, nums1, 0, len);
+    }
+
+    private
+
+    int m = 0;
+
+    public void merge_bak(int[] nums1, int m, int[] nums2, int n) {
         if (m == 0 && n == 0) {
             return;
         }
