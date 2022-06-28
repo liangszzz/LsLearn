@@ -37,27 +37,19 @@ public class Code12 {
     }
 
     public String intToRoman(int num) {
-        Map<Integer, String> map = new HashMap<>();
-        map.put(1, "I");
-        map.put(5, "V");
-        map.put(10, "X");
-        map.put(50, "L");
-        map.put(100, "C");
-        map.put(500, "D");
-        map.put(1000, "M");
+        int[] numbers = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] romans = new String[]{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
-        map.put(9, "IX");
-        map.put(40, "XL");
-        map.put(90, "XC");
-        map.put(400, "CD");
-        map.put(900, "CM");
         StringBuilder builder = new StringBuilder();
-        String snum = num + "";
-        for (int i = snum.length() - 1; i >= 0; i--) {
-            int x = Integer.parseInt(snum.charAt(i) + "");
-
+        int i = 0;
+        while (num != 0) {
+            if (num >= numbers[i]) {
+                builder.append(romans[i]);
+                num -= numbers[i];
+            } else {
+                i++;
+            }
         }
         return builder.toString();
-
     }
 }
