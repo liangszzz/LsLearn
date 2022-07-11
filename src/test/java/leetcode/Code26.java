@@ -78,7 +78,23 @@ public class Code26 {
     }
 
     static class Solution {
+
         public int removeDuplicates(int[] nums) {
+            int len = nums.length;
+            int before = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                if (before == nums[i]) {
+                    len--;
+                    nums[i] = 200;
+                } else {
+                    before = nums[i];
+                }
+            }
+            Arrays.sort(nums);
+            return len;
+        }
+
+        public int removeDuplicates2(int[] nums) {
             int max = nums.length;
             for (int i = 0; i < max; i++) {
                 int check = nums[i];

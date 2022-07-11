@@ -84,7 +84,20 @@ public class Code27 {
     }
 
     static class Solution {
+
         public int removeElement(int[] nums, int val) {
+            int len = nums.length;
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] == val) {
+                    len--;
+                    nums[i] = 200;
+                }
+            }
+            return len;
+        }
+
+
+        public int removeElement2(int[] nums, int val) {
             int max = nums.length;
             for (int i = 0; i < max; ) {
                 int arrVal = nums[i];
